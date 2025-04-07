@@ -1,14 +1,18 @@
+# Phụ lục
+*Tác giả đang bị lười, nên là các bạn tự tìm trong repo đi nhé! ~Mãi iu~*
+
 # Tổng quan
 Một bộ sưu tập đề thi tin của Nguyễn Minh Khôi (aka Nờ Mờ Ka).
 
 # Quyền sử dụng
-Cứ dùng thoải mái mà nhớ để credit nếu bạn tôn trọng các giả
+Cứ dùng thoải mái mà nhớ để credit nếu bạn tôn trọng tác giả.
 
 # Lời kết
 Chúc bạn may mắn với mớ đề thi đó 😘!
 
-# Phụ lục
+# Ủng hộ mình
 
-## 2025
+Nếu thấy nội dung hữu ích, bạn có thể ủng hộ mình qua:
 
-*Tác giả đang bị lười, nên là các bạn tự tìm trong repo đi nhé! ~Mãi iu~*
+![Vietcombank: 1051301090 - NGUYENMINHKHOI](https://nguyenminhkhoi2009.github.io/nguyenminhkhoi.io.vn-cauchuyenvathuattoan/assets/images/png/VCM_Donate.png)
+
