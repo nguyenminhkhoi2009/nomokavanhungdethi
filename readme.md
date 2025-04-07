@@ -14,5 +14,5 @@ Chúc bạn may mắn với mớ đề thi đó 😘!
 
 Nếu thấy nội dung hữu ích, bạn có thể ủng hộ mình qua:
 
-![Vietcombank: 1051301090 - NGUYENMINHKHOI](https://raw.githubusercontent.com/nguyenminhkhoi2009/nomokavanhungdethi/refs/heads/main/vcb_donate.png)
+![Vietcombank: 1051301090 - NGUYENMINHKHOI](https://nomokavanhungdethi.nguyenminhkhoi.io.vn/vcb_donate.png)
 
