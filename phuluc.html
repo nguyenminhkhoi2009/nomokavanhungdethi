@@ -3,23 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nờ Mờ Ka Và Những Đề Thi - Phụ Lục</title>
+    <title>Nờ Mờ Ka Và Những Đề Thi</title>
     <link rel="icon" href="https://nomokavanhungdethi.nguyenminhkhoi.io.vn/favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
         }
-        iframe {
-            border: none;
-            width: 100%;
-            height: 100%;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
-    <iframe src="https://khoingexe.github.io/webutilities/vi/markdown/viewer.html?url=https://nomokavanhungdethi.nguyenminhkhoi.io.vn/phuluc.md&title=N%E1%BB%9D%20M%E1%BB%9D%20Ka%20V%C3%A0%20Nh%E1%BB%AFng%20%C4%90%E1%BB%81%20Thi%20-%20Ph%E1%BB%A5%20L%E1%BB%A5c"></iframe>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Nờ Mờ Ka Và Những Đề Thi</h1>
+            <p class="text-gray-600">Một bộ sưu tập đề thi tin của Nguyễn Minh Khôi (aka Nờ Mờ Ka).</p>
+        </header>
+
+        <!-- Search -->
+        <div class="mb-8 bg-white rounded-lg shadow p-4">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm đề thi..." 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="text-center py-8">
+            <div class="animate-spin inline-block w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+            <p class="mt-3 text-gray-600">Đang tải dữ liệu đề thi...</p>
+        </div>
+
+        <!-- Exam List -->
+        <div id="examContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Exams will be loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const examContainer = document.getElementById('examContainer');
+            const searchInput = document.getElementById('searchInput');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            
+            let exams = [];
+
+            // Show loading initially
+            loadingIndicator.style.display = 'block';
+            examContainer.style.display = 'none';
+
+            // Fetch exam data
+            fetch('https://nomokavanhungdethi.nguyenminhkhoi.io.vn/phuluc.json')
+                .then(response => response.json())
+                .then(data => {
+                    exams = data;
+                    
+                    // Hide loading and show exams with fade-in effect
+                    setTimeout(() => {
+                        loadingIndicator.style.display = 'none';
+                        examContainer.style.display = 'grid';
+                        renderExams(exams);
+                    }, 500);
+                })
+                .catch(error => {
+                    loadingIndicator.innerHTML = `
+                        <p class="text-red-500">Đã xảy ra lỗi khi tải dữ liệu. Vui lòng thử lại sau.</p>
+                        <button onclick="location.reload()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                            Tải lại trang
+                        </button>
+                    `;
+                    console.error('Error fetching exam data:', error);
+                });
+
+            // Render exams function
+            function renderExams(examsToRender) {
+                if (examsToRender.length === 0) {
+                    examContainer.innerHTML = `
+                        <div class="col-span-full text-center py-8">
+                            <p class="text-gray-600">Không tìm thấy đề thi nào phù hợp.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                examContainer.innerHTML = examsToRender.map((exam, index) => `
+                    <div class="bg-white rounded-lg shadow overflow-hidden hover:shadow-lg transition-shadow duration-300 fade-in" style="animation-delay: ${index * 0.05}s">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2 line-clamp-2" title="${exam.name}">${exam.name}</h3>
+                            <div class="flex justify-between items-center mt-4">
+                                <a href="${exam.url}" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300">
+                                    Xem đề thi
+                                </a>
+                                <span class="text-sm text-gray-500">
+                                    ${exam.url.split('.').pop().toUpperCase()}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Filter exams based on search
+            function filterExams() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const filtered = exams.filter(exam => exam.name.toLowerCase().includes(searchTerm));
+                renderExams(filtered);
+            }
+            
+            // Search input event listener
+            searchInput.addEventListener('input', filterExams);
+        });
+    </script>
 </body>
 </html>
