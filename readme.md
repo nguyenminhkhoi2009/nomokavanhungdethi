@@ -1,5 +1,5 @@
 # Phụ lục
-*Tác giả đang bị lười, nên là các bạn tự tìm trong repo đi nhé! Mãi iu❤️*
+*Tác giả đang bị lười, nên là các bạn tự tìm trong [repo](https://github.com/nguyenminhkhoi2009/nomokavanhungdethi/) đi nhé! Mãi iu❤️*
 
 # Tổng quan
 Một bộ sưu tập đề thi tin của Nguyễn Minh Khôi (aka Nờ Mờ Ka).
